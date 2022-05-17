@@ -4,7 +4,7 @@
 This microservices are developed with Node.js, Express.js, MongoDB and RabbitMQ.
 Using RabbitMQ for inter communication service to service by following queue technique.
 
-### There are two services
+### There are two microservices
 
 - Student service
 - Library service
