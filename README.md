@@ -6,17 +6,16 @@ Using RabbitMQ for inter communication service to service by following queue tec
 
 ### There are two services
 
-- [Student service]
-- [Library service]
+- Student service
+- Library service
 
-#### Student service
-
+### Student service
 Student service will work for
 
-- [Registration a student account.]
-- [Login to student account.]
-- [Retrive student profile info.]
-- [Update student profile info.]
-- [Get books from library service.]
-- [Show book information from library service.]
-- [Booked a book for more days to library service.]
+- Registration a student account.
+- Login to student account.
+- Retrive student profile info.
+- Update student profile info.
+- Get books from library service.
+- Show book information from library service.
+- Booked a book for more days to library service.
