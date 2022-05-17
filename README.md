@@ -1,7 +1,7 @@
 
 ## Library management microservice
 
-This microservices are developed with Node.js, Express.js, MongoDB and RabbitMQ.
+This microservices are developed with Node.js, Express.js, TypeScript, MongoDB and RabbitMQ.
 Using RabbitMQ for inter communication service to service by following queue technique.
 
 ### There are two microservices
