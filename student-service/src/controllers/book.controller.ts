@@ -1,6 +1,6 @@
 
 import { Request, Response, NextFunction } from "express"
-import { publishToQueue } from "../services/mq-service"
+import { publishToQueue } from "../services/rabbitmq.service"
 
 /* List of items */
 export const Index = async (req: Request, res: Response, next: NextFunction) => {
