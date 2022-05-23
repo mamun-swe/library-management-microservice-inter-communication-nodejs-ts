@@ -8,40 +8,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Show = exports.Index = void 0;
-const cote_service_1 = require("../services/cote.service");
-/* List of items */
-const Index = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+exports.bookList = void 0;
+const cote_1 = __importDefault(require("cote"));
+const requesterService = new cote_1.default.Requester({ name: "Student requester service" });
+/* Send request for book list */
+const bookList = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let { queueName, payload } = req.body;
-        const serviceResponse = yield (0, cote_service_1.bookList)();
-        res.status(200).json({
-            status: true,
-            data: serviceResponse
-        });
+        return yield requesterService.send({ type: "book-list", });
     }
     catch (error) {
         if (error) {
             console.log(error);
-            next(error);
         }
     }
 });
-exports.Index = Index;
-/* Show specific item */
-const Show = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        res.status(200).json({
-            status: true,
-            data: null
-        });
-    }
-    catch (error) {
-        if (error) {
-            console.log(error);
-            next(error);
-        }
-    }
-});
-exports.Show = Show;
+exports.bookList = bookList;
