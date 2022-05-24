@@ -39,7 +39,6 @@ if (cluster.isMaster) {
     app.use(compression())
     app.use(bodyParser.json())
     app.use(bodyParser.urlencoded({ extended: true }))
-    app.use(rabbitMQService)
 
     /* Base route */
     app.get('/', (req: Request, res: Response, next: NextFunction) => {
@@ -87,6 +86,7 @@ if (cluster.isMaster) {
 
     /* Start app to specific PORT */
     app.listen(port, () => {
-        console.log(`[server]: Server is running at https://localhost:${port}`)
+        rabbitMQService()
+        console.log(`Library service is running at https://localhost:${port}`)
     })
 }

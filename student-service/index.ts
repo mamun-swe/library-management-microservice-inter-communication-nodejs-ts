@@ -12,6 +12,7 @@ import mongoose from "mongoose"
 import bodyParser from "body-parser"
 import compression from "compression"
 import { router } from "./src/routes"
+import { rabbitMQService } from "./src/services/rabbitmq.service"
 
 dotenv.config()
 const numCPUs = cpus().length
@@ -85,6 +86,7 @@ if (cluster.isMaster) {
 
     /* Start app to specific PORT */
     app.listen(port, () => {
-        console.log(`[server]: Server is running at https://localhost:${port}`)
+        rabbitMQService()
+        console.log(`Student service is running at https://localhost:${port}`)
     })
 }

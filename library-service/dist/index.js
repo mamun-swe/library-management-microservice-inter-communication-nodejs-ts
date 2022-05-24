@@ -16,8 +16,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const compression_1 = __importDefault(require("compression"));
 // import { router } from "./src/routes"
-// import { rabbitMQService } from "./src/rabbitmq.service"
-const cote_service_1 = require("./src/cote.service");
+const rabbitmq_service_1 = require("./src/rabbitmq.service");
 dotenv_1.default.config();
 const numCPUs = (0, os_1.cpus)().length;
 const port = process_1.default.env.PORT;
@@ -40,7 +39,6 @@ else {
     app.use((0, compression_1.default)());
     app.use(body_parser_1.default.json());
     app.use(body_parser_1.default.urlencoded({ extended: true }));
-    app.use(cote_service_1.services);
     /* Base route */
     app.get('/', (req, res, next) => {
         return res.status(200).json("Welcome to library service");
@@ -81,6 +79,7 @@ else {
     });
     /* Start app to specific PORT */
     app.listen(port, () => {
-        console.log(`[server]: Server is running at https://localhost:${port}`);
+        (0, rabbitmq_service_1.rabbitMQService)();
+        console.log(`Library service is running at https://localhost:${port}`);
     });
 }

@@ -5,7 +5,7 @@ const CONN_URL = process.env.AMQP_URL
 
 let channel: Channel
 
-export const rabbitMQService = async (req: Request, res: Response, next: NextFunction) => {
+export const rabbitMQService = async () => {
 
     /* Create connection */
     const connection: Connection = await client.connect(`${CONN_URL}`)
@@ -14,15 +14,14 @@ export const rabbitMQService = async (req: Request, res: Response, next: NextFun
     /* Create channel */
     channel = await connection.createChannel()
 
-    await channel.consume("user-messages", userMessageConsumer(channel))
-    next()
+    await channel.consume("user-messages-2", userMessageConsumer(channel))
 }
 
 export const userMessageConsumer = (channel: Channel) => (msg: ConsumeMessage | null) => {
     if (msg) {
         // Display the received message
         console.log(msg.content.toString())
-        console.log(msg)
+        // console.log(msg)
 
         // Acknowledge the message
         channel.ack(msg)

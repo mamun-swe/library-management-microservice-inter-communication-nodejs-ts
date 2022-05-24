@@ -10,15 +10,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Show = exports.Index = void 0;
-const cote_service_1 = require("../services/cote.service");
+const rabbitmq_service_1 = require("../services/rabbitmq.service");
 /* List of items */
 const Index = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let { queueName, payload } = req.body;
-        const serviceResponse = yield (0, cote_service_1.bookList)();
+        yield (0, rabbitmq_service_1.publishToQueue)(queueName, payload);
         res.status(200).json({
             status: true,
-            data: serviceResponse
+            data: []
         });
     }
     catch (error) {

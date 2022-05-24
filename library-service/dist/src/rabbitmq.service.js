@@ -16,22 +16,21 @@ exports.userMessageConsumer = exports.rabbitMQService = void 0;
 const amqplib_1 = __importDefault(require("amqplib"));
 const CONN_URL = process.env.AMQP_URL;
 let channel;
-const rabbitMQService = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const rabbitMQService = () => __awaiter(void 0, void 0, void 0, function* () {
     /* Create connection */
     const connection = yield amqplib_1.default.connect(`${CONN_URL}`);
     if (connection)
         console.log("RabbitMQ connected.");
     /* Create channel */
     channel = yield connection.createChannel();
-    yield channel.consume("user-messages", (0, exports.userMessageConsumer)(channel));
-    next();
+    yield channel.consume("user-messages-2", (0, exports.userMessageConsumer)(channel));
 });
 exports.rabbitMQService = rabbitMQService;
 const userMessageConsumer = (channel) => (msg) => {
     if (msg) {
         // Display the received message
         console.log(msg.content.toString());
-        console.log(msg);
+        // console.log(msg)
         // Acknowledge the message
         channel.ack(msg);
     }

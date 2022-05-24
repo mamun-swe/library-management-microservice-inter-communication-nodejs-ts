@@ -16,6 +16,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const compression_1 = __importDefault(require("compression"));
 const routes_1 = require("./src/routes");
+const rabbitmq_service_1 = require("./src/services/rabbitmq.service");
 dotenv_1.default.config();
 const numCPUs = (0, os_1.cpus)().length;
 const port = process_1.default.env.PORT;
@@ -78,6 +79,7 @@ else {
     });
     /* Start app to specific PORT */
     app.listen(port, () => {
-        console.log(`[server]: Server is running at https://localhost:${port}`);
+        (0, rabbitmq_service_1.rabbitMQService)();
+        console.log(`Student service is running at https://localhost:${port}`);
     });
 }

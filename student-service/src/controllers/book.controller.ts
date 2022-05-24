@@ -6,7 +6,7 @@ import { publishToQueue } from "../services/rabbitmq.service"
 export const Index = async (req: Request, res: Response, next: NextFunction) => {
     try {
         let { queueName, payload } = req.body
-        
+
         await publishToQueue(queueName, payload)
 
         res.status(200).json({
